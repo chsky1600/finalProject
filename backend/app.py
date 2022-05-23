@@ -11,4 +11,8 @@ api = Api(app)
 def serve(path):
     return send_from_directory(app.static_folder,'index.html')
 
+@app.route("/favicon.ico")
+def favicon():
+    return "", 200
+
 api.add_resource(HelloApiHandler, '/flask/hello')
