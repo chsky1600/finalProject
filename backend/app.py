@@ -3,16 +3,12 @@ from flask_cors import CORS
 from flask_restful import Api, Resource, reqparse
 from backend.src.HelloApiHandler import HelloApiHandler
 
-app = Flask(__name__, static_url_path='', static_folder='../frontend/build')
+app = Flask(__name__, static_url_path='/', static_folder='../frontend/build')
 #CORS(app)
 api = Api(app)
 
 @app.route("/", defaults={"path":""})
 def serve(path):
     return send_from_directory(app.static_folder,'index.html')
-
-@app.route("/favicon.ico")
-def favicon():
-    return "", 200
 
 api.add_resource(HelloApiHandler, '/flask/hello')
